@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>VulHunt</title>
+    <subtitle>Vulnerability Detection Framework by Binarly&#x27;s REsearch Team</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://vulhunt.re/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://vulhunt.re"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-06T00:00:00+00:00</updated>
+    <id>https://vulhunt.re/atom.xml</id>
+    <entry xml:lang="en">
+        <title>LLM Full Documentation</title>
+        <published>2026-03-06T00:00:00+00:00</published>
+        <updated>2026-03-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vulhunt.re/llm-full.txt/"/>
+        <id>https://vulhunt.re/llm-full.txt/</id>
+        
+        <content type="html" xml:base="https://vulhunt.re/llm-full.txt/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>LLM Documentation</title>
+        <published>2026-03-06T00:00:00+00:00</published>
+        <updated>2026-03-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vulhunt.re/llm.txt/"/>
+        <id>https://vulhunt.re/llm.txt/</id>
+        
+        <content type="html" xml:base="https://vulhunt.re/llm.txt/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>VulHunt Rules</title>
+        <published>2026-03-06T00:00:00+00:00</published>
+        <updated>2026-03-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vulhunt.re/rules/"/>
+        <id>https://vulhunt.re/rules/</id>
+        
+        <content type="html" xml:base="https://vulhunt.re/rules/">&lt;p&gt;VulHunt rules are Lua scripts that encode vulnerability detection logic and run against binary targets. Each rule combines metadata, analysis scopes, and a check function that returns structured findings with evidence annotations. Rules can detect known CVEs, vulnerability patterns, patches, and even previously unknown issues across POSIX binaries and UEFI firmware.&lt;&#x2F;p&gt;
+&lt;div style=&quot;display: flex; gap: 1rem; align-items: flex-start; background: #141414; border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;&quot;&gt;
+&lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;32&quot; height=&quot;32&quot; fill=&quot;none&quot; stroke=&quot;#5b8a7a&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;flex-shrink: 0; margin-top: 2px;&quot;&gt;&lt;circle cx=&quot;11&quot; cy=&quot;11&quot; r=&quot;8&quot;&#x2F;&gt;&lt;path d=&quot;M21 21l-4.35-4.35&quot;&#x2F;&gt;&lt;path d=&quot;M8 8h6&quot;&#x2F;&gt;&lt;path d=&quot;M8 11h4&quot;&#x2F;&gt;&lt;path d=&quot;M8 14h5&quot;&#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;div&gt;
+&lt;p style=&quot;margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #fff;&quot;&gt;Looking for rules to get started?&lt;&#x2F;p&gt;
+&lt;p style=&quot;margin: 0; color: rgba(255, 255, 255, 0.65);&quot;&gt;Check out our &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vulhunt-re&#x2F;rules&quot; style=&quot;color: #c8b560;&quot;&gt;collection of community rules&lt;&#x2F;a&gt; for ready-to-use detection logic covering real-world CVEs and vulnerability patterns.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;rule-structure&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#rule-structure&quot; aria-label=&quot;Anchor link for: rule-structure&quot;&gt;Rule Structure&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;A rule is a collection of fields organized into three categories: &lt;strong&gt;metadata&lt;&#x2F;strong&gt; (author, name), &lt;strong&gt;filtering&lt;&#x2F;strong&gt; (platform, architecture, conditions), and &lt;strong&gt;detection&lt;&#x2F;strong&gt; (scopes, types, signatures, extensions). Scopes contain the check functions that implement the actual detection logic.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;lua&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;author&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;Binarly&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;CVE-2024-12084&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;platform&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;posix-binary&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;architecture&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;*:*:*&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;types&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;rsync&#x2F;v3.3.0&#x2F;rsync&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;signatures&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {project&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;rsync&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;, from&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;3.2.7&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;, to&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;3.3.9&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;conditions&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {name_with_prefix&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt;&amp;quot;rsync&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;}}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;scopes&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; scope&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;functions&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  target&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {matching&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;send_files&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;, kind&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;symbol&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;},&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  with&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; check&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;function&lt;&#x2F;span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; check&lt;&#x2F;span&gt;&lt;span&gt;(project, context)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #6A737D;&quot;&gt;  -- detection logic here&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #F97583;&quot;&gt;end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;rule-fields&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#rule-fields&quot; aria-label=&quot;Anchor link for: rule-fields&quot;&gt;Rule Fields&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Field&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Description&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Category&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: center&quot;&gt;Required&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;author&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Author of the rule&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Metadata&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;name&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Name of the rule (e.g., a CVE identifier)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Metadata&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;platform&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Target platform: &lt;code&gt;posix-binary&lt;&#x2F;code&gt;, &lt;code&gt;efi-module&lt;&#x2F;code&gt;, or &lt;code&gt;efi-standalone&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Filtering&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;architecture&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Architecture triplet (&lt;code&gt;processor:endian:bits&lt;&#x2F;code&gt;), e.g., &lt;code&gt;X86:LE:64&lt;&#x2F;code&gt; or &lt;code&gt;*:*:*&lt;&#x2F;code&gt; for all&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Filtering&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;conditions&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Conditions under which the rule should be executed&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Filtering&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;No&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;types&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Type library used by the engine for matching and decompilation&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Detection&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;No&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;signatures&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Signature files used to identify functions in binaries without symbols&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Detection&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;No&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;extensions&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Specifies any extension needed by this rule (e.g., the &lt;code&gt;decompiler&lt;&#x2F;code&gt;)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Detection&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;No&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;scopes&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Defines the list of scopes used to identify a vulnerability&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Detection&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;For a complete field reference, see the &lt;a href=&quot;&#x2F;docs&#x2F;vulhunt-reference&#x2F;vulhunt-rules&#x2F;rule-fields&#x2F;&quot;&gt;Rule Fields&lt;&#x2F;a&gt; documentation.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;analysis-scopes&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#analysis-scopes&quot; aria-label=&quot;Anchor link for: analysis-scopes&quot;&gt;Analysis Scopes&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Scopes define the analysis context in which detection logic executes. VulHunt supports three scopes, each suited to different detection strategies:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;Scope&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Context&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: left&quot;&gt;Description&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;scope:project&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Whole binary&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Runs checks across the entire binary. Useful for byte pattern matching and binary-wide analysis.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;scope:functions&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Individual functions&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Targets specific functions by name, symbol, or query. Ideal for analyzing known vulnerable code.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;&lt;code&gt;scope:calls&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Call-sites in functions&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: left&quot;&gt;Tracks data flow from sources to sinks using taint analysis. The most powerful scope for detecting injection and overflow patterns.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h3 id=&quot;project-scope&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#project-scope&quot; aria-label=&quot;Anchor link for: project-scope&quot;&gt;Project Scope&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Perform binary-wide analysis such as byte pattern searches:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;lua&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;scopes&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;scope&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;project&lt;&#x2F;span&gt;&lt;span&gt;{with&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; check}}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;functions-scope&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#functions-scope&quot; aria-label=&quot;Anchor link for: functions-scope&quot;&gt;Functions Scope&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Find and analyze specific functions by name or pattern:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;lua&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;scopes&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; scope&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;functions&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  target&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {matching&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;send_files&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;, kind&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;symbol&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;},&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  with&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; check&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;calls-scope&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#calls-scope&quot; aria-label=&quot;Anchor link for: calls-scope&quot;&gt;Calls Scope&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Track how attacker-controlled data flows from sources to sinks:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;lua&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;scopes&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; scope&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;calls&lt;&#x2F;span&gt;&lt;span&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  with&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; check,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  to&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    matching&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;strcpy|strcat|system|sprintf&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    kind&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;symbol&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  },&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  where&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; caller&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;calls&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;json_object_get_string&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  using&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    callees&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;      json_object_get_string&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span&gt; {output&lt;&#x2F;span&gt;&lt;span style=&quot;color: #F97583;&quot;&gt; =&lt;&#x2F;span&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt; var&lt;&#x2F;span&gt;&lt;span&gt;:&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt;named&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &amp;quot;out&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  }&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For detailed scope documentation, see the &lt;a href=&quot;&#x2F;docs&#x2F;user-guide&#x2F;vulhunt-rules&#x2F;scopes&#x2F;&quot;&gt;User Guide&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;docs&#x2F;vulhunt-reference&#x2F;scopes&#x2F;&quot;&gt;Reference&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;detection-capabilities&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#detection-capabilities&quot; aria-label=&quot;Anchor link for: detection-capabilities&quot;&gt;Detection Capabilities&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;The engine exposes the following analysis capabilities to rules:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Dataflow analysis&lt;&#x2F;strong&gt;: trace how values propagate through a function, from attacker-controlled inputs to dangerous sinks. Supports custom sanitization functions to reduce false positives.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Code pattern matching&lt;&#x2F;strong&gt;: search decompiled code using Weggli-style queries for architecture-independent detection of high-level vulnerability patterns.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Type libraries&lt;&#x2F;strong&gt;: apply C type definitions and function prototypes to improve decompilation accuracy, enabling detection based on structure fields and function signatures.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Function signatures&lt;&#x2F;strong&gt;: use FLIRT signatures to restore function names in stripped binaries, making detection logic portable portable across builds with or without symbols.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Byte pattern matching&lt;&#x2F;strong&gt;: match raw byte sequences in binary code, compatible with FwHunt patterns. Useful for targeting specific instruction sequences or malware indicators.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;writing-rules&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#writing-rules&quot; aria-label=&quot;Anchor link for: writing-rules&quot;&gt;Writing Rules&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;To get started writing rules, see the &lt;a href=&quot;&#x2F;docs&#x2F;user-guide&#x2F;vulhunt-rules&#x2F;&quot;&gt;User Guide&lt;&#x2F;a&gt; and these practical walkthroughs:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;docs&#x2F;user-guide&#x2F;vulhunt-rules&#x2F;best-practices&#x2F;&quot;&gt;Best Practices&lt;&#x2F;a&gt; — guidelines for writing effective rules&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;docs&#x2F;user-guide&#x2F;vulhunt-rules&#x2F;use-cases&#x2F;&quot;&gt;Use Cases&lt;&#x2F;a&gt; — worked examples including buffer overflows and CVE detection&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Community-contributed rules are hosted at &lt;a rel=&quot;noopener noreferrer external&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vulhunt-re&#x2F;rules&quot;&gt;github.com&#x2F;vulhunt-re&#x2F;rules&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>VulHunt Agent Skills</title>
+        <published>2026-03-06T00:00:00+00:00</published>
+        <updated>2026-03-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://vulhunt.re/skills/"/>
+        <id>https://vulhunt.re/skills/</id>
+        
+        <content type="html" xml:base="https://vulhunt.re/skills/">&lt;p&gt;VulHunt integrates with AI coding assistants through the Model Context Protocol (MCP), enabling LLM-driven vulnerability research directly from your editor or agent framework.&lt;&#x2F;p&gt;
+&lt;div style=&quot;display: flex; gap: 1rem; align-items: flex-start; background: #141414; border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0;&quot;&gt;
+&lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;32&quot; height=&quot;32&quot; fill=&quot;none&quot; stroke=&quot;#5b8a7a&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; style=&quot;flex-shrink: 0; margin-top: 2px;&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;11&quot; width=&quot;18&quot; height=&quot;10&quot; rx=&quot;2&quot;&#x2F;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;5&quot; r=&quot;2&quot;&#x2F;&gt;&lt;path d=&quot;M12 7v4&quot;&#x2F;&gt;&lt;circle cx=&quot;8&quot; cy=&quot;16&quot; r=&quot;1&quot;&#x2F;&gt;&lt;circle cx=&quot;16&quot; cy=&quot;16&quot; r=&quot;1&quot;&#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;div&gt;
+&lt;p style=&quot;margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600; color: #fff;&quot;&gt;Ready-to-use agent skills&lt;&#x2F;p&gt;
+&lt;p style=&quot;margin: 0; color: rgba(255, 255, 255, 0.65);&quot;&gt;Browse our &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vulhunt-re&#x2F;skills&quot; style=&quot;color: #c8b560;&quot;&gt;skills marketplace&lt;&#x2F;a&gt; for guided workflows covering decompilation, dataflow analysis, pattern matching, and more.&lt;&#x2F;p&gt;
+&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;llm-integration&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#llm-integration&quot; aria-label=&quot;Anchor link for: llm-integration&quot;&gt;LLM Integration&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;VulHunt exposes its analysis capabilities through an &lt;a href=&quot;&#x2F;docs&#x2F;user-guide&#x2F;vulhunt-cli&#x2F;options&#x2F;mcp&#x2F;&quot;&gt;MCP server&lt;&#x2F;a&gt;, allowing integration with any agent framework that supports the Model Context Protocol, including Claude Code, Claude Desktop, and OpenAI Codex.&lt;&#x2F;p&gt;
+&lt;p&gt;The MCP server provides a set of tools that, combined with VulHunt&#x27;s Lua query interface, give LLMs flexible access to the full analysis engine. Rather than exposing a rigid set of endpoints, VulHunt lets the model decide dynamically which queries to execute based on the current analysis context.&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;MCP Tool&lt;&#x2F;th&gt;&lt;th&gt;Description&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;open_project&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Open a project from a given path, with optional platform attributes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;query_project&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Execute a Lua script against the currently open project and return the result as JSON&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;update_function_name&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Update the name of a function in the currently open project&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;set_function_notes&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Set notes for a function in the currently open project&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;get_function_notes&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Get the notes for a function in the currently open project&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;load_signatures&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Load FLIRT signature databases for function identification&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;load_types&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Load a type library for function type information&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;For an in-depth walkthrough of LLM-driven vulnerability triaging and hunting, see &lt;a rel=&quot;noopener noreferrer external&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.binarly.io&#x2F;blog&#x2F;agentic-vulnerability-research-with-vulhunt&quot;&gt;Agentic Vulnerability Research with VulHunt&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;mcp-configuration&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#mcp-configuration&quot; aria-label=&quot;Anchor link for: mcp-configuration&quot;&gt;MCP Configuration&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;Add VulHunt&#x27;s MCP server to your AI assistant:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Claude Code&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;claude&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; mcp add vulhunt-ce&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; --&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; vulhunt-ce mcp&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; --stdio -d&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &#x2F;path&#x2F;to&#x2F;bias-data&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Codex CLI&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;codex&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; mcp add vulhunt-ce&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; --&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; vulhunt-ce mcp&lt;&#x2F;span&gt;&lt;span style=&quot;color: #79B8FF;&quot;&gt; --stdio -d&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; &#x2F;path&#x2F;to&#x2F;bias-data&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For full configuration options, see the &lt;a href=&quot;&#x2F;docs&#x2F;user-guide&#x2F;vulhunt-cli&#x2F;options&#x2F;mcp&quot;&gt;MCP documentation&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;skills-marketplace&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#skills-marketplace&quot; aria-label=&quot;Anchor link for: skills-marketplace&quot;&gt;Skills Marketplace&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;To guide LLMs through common analysis tasks, VulHunt ships a set of &lt;strong&gt;Agent Skills&lt;&#x2F;strong&gt;: structured instructions that teach an agent how to use VulHunt&#x27;s MCP tools for specific workflows. Skills are hosted at &lt;a rel=&quot;noopener noreferrer external&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;vulhunt-re&#x2F;skills&quot;&gt;github.com&#x2F;vulhunt-re&#x2F;skills&lt;&#x2F;a&gt; and distributed as a plugin marketplace that can be installed with the following commands:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;claude&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; plugin marketplace add vulhunt-re&#x2F;skills&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;claude&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; plugin install vulhunt&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For &lt;a rel=&quot;noopener noreferrer external&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;skill.sh&quot;&gt;skill.sh&lt;&#x2F;a&gt; users:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color: #E1E4E8; background-color: #24292E;&quot;&gt;&lt;code data-lang=&quot;shellscript&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span style=&quot;color: #B392F0;&quot;&gt;npx&lt;&#x2F;span&gt;&lt;span style=&quot;color: #9ECBFF;&quot;&gt; skills add vulhunt-re&#x2F;skills&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once installed, skills are invoked via slash commands (e.g., &lt;code&gt;&#x2F;vulhunt:decompiler&lt;&#x2F;code&gt;). Each skill provides the LLM with the right Lua query templates, parameter formats, and analysis strategies for a given task, so the model can act autonomously without needing to learn the full API upfront.&lt;&#x2F;p&gt;
+&lt;p&gt;This initial set of skills can be extended to handle more complex analyses or target specific vulnerability patterns.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;available-skills&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#available-skills&quot; aria-label=&quot;Anchor link for: available-skills&quot;&gt;Available Skills&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Skill&lt;&#x2F;th&gt;&lt;th&gt;Command&lt;&#x2F;th&gt;&lt;th&gt;Description&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;functions&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;vulhunt:functions&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Find and list functions by name, address, regex, or byte pattern&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;decompiler&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;vulhunt:decompiler&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Decompile a function to C-like pseudocode&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;call-sites&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;vulhunt:call-sites&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Find all locations where a function is called in a binary&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;dataflow-analysis&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;vulhunt:dataflow-analysis&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Track data flow between parameters, calls, and arguments using taint analysis&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;code-pattern-matching&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;vulhunt:code-pattern-matching&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Search decompiled output for code patterns using Weggli semantic matching&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;byte-pattern-matching&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;vulhunt:byte-pattern-matching&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Search for raw byte patterns (hex sequences, opcodes) in binary code&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;btp-ba2-cli&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;vulhunt:btp-ba2-cli&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Interact with the Binarly Transparency Platform and BA2 archives via CLI&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+</content>
+        
+    </entry>
+</feed>
